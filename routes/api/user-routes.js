@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-// establish requests
+// Import the controller functions
 const {
     createUser,
     getUsers,
@@ -11,20 +11,20 @@ const {
     deleteFriend,
 } = require('../../controllers/userController');
 
-// get all users
+// Define the routes
 router.route('/').get(getUsers).post(createUser);
 
-// requests pertaining to a single user by ID
+// Requests pertaining to a single user by ID
 router
     .route('/:userId')
     .get(getSingleUser)
     .put(updateUser)
-    .delete(deleteUser)
+    .delete(deleteUser);
 
-// requests pertaining to a users friendslist
+// Requests pertaining to a user's friends list
 router
     .route('/:userId/friends/:friendId')
     .post(addFriend)
-    .delete(deleteFriend)
+    .delete(deleteFriend);
 
-    module.exports = router;
+module.exports = router;
